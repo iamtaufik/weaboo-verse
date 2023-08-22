@@ -36,7 +36,9 @@ export const useFetch = async (url: string, method: string = 'GET', data?: Paylo
       };
     }
 
-    const response = await axios.get(url, { method, httpsAgent: agent });
+    const response = await axios.get(url, { method, httpsAgent: agent,headers: {
+    'Cache-Control': 'no-cache',
+  }, });
     return {
       data: response.data,
       status: response.status,
