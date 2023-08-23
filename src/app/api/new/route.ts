@@ -3,9 +3,10 @@ import { NextRequest, NextResponse } from 'next/server';
 import cheerio from 'cheerio';
 
 export const GET = async (req: NextRequest) => {
+  const timestamp = new Date().getTime();
   try {
     // eslint-disable-next-line react-hooks/rules-of-hooks
-    const { data, status } = await useFetch('https://otakudesu.lol/ongoing-anime/');
+    const { data, status } = await useFetch(`https://otakudesu.lol/ongoing-anime/?=${timestamp}`);
 
     if (status !== 200) throw new Error(`Error ${status}`);
 
