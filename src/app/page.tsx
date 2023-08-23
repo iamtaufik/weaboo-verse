@@ -34,7 +34,7 @@ export default function Home() {
           <div className="animate-spin rounded-full h-32 w-32 border-b-2 border-gray-900"></div>
         </div>
       ) : null}
-      <div className="flex justify-center flex-wrap gap-4">
+      <div className="flex justify-center flex-wrap gap-2">
         {episode.map((item) => (
           <Card key={item.id} id={item.id} title={item.title} thumbnail={item.thumbnail} episode={item.episode} />
         ))}
