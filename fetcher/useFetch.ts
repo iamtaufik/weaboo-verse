@@ -9,16 +9,16 @@ interface Payload {
   action?: '2a3505c93b0035d3f455df82bf976b84';
 }
 
-export const useFetch = async (url: string, method: string = 'GET', data?: Payload) => {
+export const useFetch = async (url: string, method: string = 'GET', pyld?: Payload) => {
   try {
     const agent = new https.Agent({
       rejectUnauthorized: false,
     });
     if (method === 'POST') {
       const from = new FormData();
-      from.append('id', String(data?.id));
-      from.append('i', String(data?.i));
-      from.append('q', String(data?.q));
+      from.append('id', String(pyld?.id));
+      from.append('i', String(pyld?.i));
+      from.append('q', String(pyld?.q));
       from.append('nonce', 'b27b5f0c46');
       from.append('action', '2a3505c93b0035d3f455df82bf976b84');
 
@@ -36,15 +36,22 @@ export const useFetch = async (url: string, method: string = 'GET', data?: Paylo
       };
     }
 
-    const response = await axios.get(url, {
-      method,
-      httpsAgent: agent,
-      headers: {
-        'Cache-Control': 'no-cache, no-store, must-revalidate',
-      },
-    });
+    // const response = await axios.get(url, {
+    //   method,
+    //   httpsAgent: agent,
+    //   headers: {
+    //     'Cache-Control': 'no-cache, no-store, must-revalidate',
+    //   },
+    // });
+    // return {
+    //   data: response.data,
+    //   status: response.status,
+    // };
+
+    const response = await fetch(url, { method, next: { revalidate: 60 } });
+    const data = await response.json();
     return {
-      data: response.data,
+      data,
       status: response.status,
     };
   } catch (error: any) {
