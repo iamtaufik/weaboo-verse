@@ -36,20 +36,9 @@ export const useFetch = async (url: string, method: string = 'GET', pyld?: Paylo
       };
     }
 
-    // const response = await axios.get(url, {
-    //   method,
-    //   httpsAgent: agent,
-    //   headers: {
-    //     'Cache-Control': 'no-cache, no-store, must-revalidate',
-    //   },
-    // });
-    // return {
-    //   data: response.data,
-    //   status: response.status,
-    // };
+    const response = await fetch(url, { method, cache: 'no-cache', next: { revalidate: 60 } });
 
-    const response = await fetch(url, { method, next: { revalidate: 60 } });
-    const data = await response.json();
+    const data = await response.text();
     return {
       data,
       status: response.status,
