@@ -36,7 +36,7 @@ export const useFetch = async (url: string, method: string = 'GET', pyld?: Paylo
       };
     }
 
-    const response = await fetch(url, { method, cache: 'no-cache', next: { revalidate: 60 } });
+    const response = await fetch(url, { method, next: { revalidate: 10 } });
 
     const data = await response.text();
     return {

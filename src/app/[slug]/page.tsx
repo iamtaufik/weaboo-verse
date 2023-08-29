@@ -17,6 +17,7 @@ const Page = ({ params }: { params: { slug: string } }) => {
       const { data } = await axios.get(`/api/anime/${params.slug}`);
       setDetailAnime(data.data);
       setLists(data.data.links);
+      localStorage.setItem('lists', JSON.stringify(data.data.links));
       setLoading(false);
     } catch (error: any) {
       setLoading(false);

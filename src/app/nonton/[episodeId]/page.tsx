@@ -1,7 +1,8 @@
 'use client';
 import Frame from '@/components/Frame';
-import React, { useEffect, useState } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import axios from 'axios';
+import { ListEpisodeContext } from '@/context/ListEpisodeCtx';
 
 interface Episode {
   title: string;
@@ -10,6 +11,7 @@ interface Episode {
 const Page = ({ params }: { params: { episodeId: string } }) => {
   const [episode, setEpisode] = useState<Episode>();
   const [loading, setLoading] = useState<boolean>(false);
+  const { setLists } = useContext(ListEpisodeContext);
 
   const getEpisode = async () => {
     setLoading(true);
@@ -27,6 +29,8 @@ const Page = ({ params }: { params: { episodeId: string } }) => {
 
   useEffect(() => {
     getEpisode();
+    const lists = localStorage.getItem('lists');
+    if (lists) setLists(JSON.parse(lists));
   }, []);
 
   return (
