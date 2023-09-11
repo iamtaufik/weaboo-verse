@@ -5,6 +5,7 @@ import axios from 'axios';
 import { useContext, useEffect, useState } from 'react';
 import { DetailAnime } from '@/types/detailAnime';
 import { ListEpisodeContext } from '@/context/ListEpisodeCtx';
+import loadingGif from '@/assets/loading.gif';
 
 const Page = ({ params }: { params: { slug: string } }) => {
   const [detailAnime, setDetailAnime] = useState<DetailAnime>();
@@ -35,7 +36,9 @@ const Page = ({ params }: { params: { slug: string } }) => {
     <div className="container py-10">
       {loading ? (
         <div className="flex justify-center">
-          <div className="animate-spin rounded-full h-32 w-32 border-b-2 border-gray-900"></div>
+          <div className=" rounded-full h-32 w-32">
+            <Image src={loadingGif} alt="loading" width={150} height={150} className="h-full w-full rounded-full" />
+          </div>
         </div>
       ) : null}
       <div className="flex justify-center">{detailAnime ? <Image className="rounded-md" src={detailAnime?.thumbnail!} width={200} height={250} alt={detailAnime?.title!} /> : null}</div>

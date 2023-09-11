@@ -3,6 +3,8 @@ import React, { useEffect, useState } from 'react';
 import { useSearchParams } from 'next/navigation';
 import axios from 'axios';
 import CardInfo from '@/components/CardInfo';
+import Image from 'next/image';
+import loadingGif from '@/assets/loading.gif';
 
 interface Anime {
   id: string;
@@ -39,7 +41,9 @@ const Page = () => {
     <div className="container py-6 flex flex-col gap-4">
       {loading ? (
         <div className="flex justify-center">
-          <div className="animate-spin rounded-full h-32 w-32 border-b-2 border-gray-900"></div>
+          <div className=" rounded-full h-32 w-32">
+            <Image src={loadingGif} alt="loading" width={150} height={150} className="h-full w-full rounded-full" />
+          </div>
         </div>
       ) : (
         <h1 className="">Hasil pencarian: {search}</h1>

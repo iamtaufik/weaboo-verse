@@ -22,7 +22,8 @@
       "@/*": ["./src/*"],
       "@/fetcher/*": ["./fetcher/*"],
       "@/components/*": ["./src/components/*"],
-      "@/types/*": ["./types/*"]
+      "@/types/*": ["./types/*"],
+      "@/assets/*": ["./src/assets/*"],
     }
   },
   "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", ".next/types/**/*.ts"],

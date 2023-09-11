@@ -3,6 +3,8 @@ import axios from 'axios';
 import Card from '@/components/Card';
 import { useEffect, useState } from 'react';
 import { Episode } from '@/types/episode';
+import loadingGif from '@/assets/loading.gif';
+import Image from 'next/image';
 
 export default function Home() {
   const [episode, setEpisode] = useState<Episode[]>([]);
@@ -31,7 +33,9 @@ export default function Home() {
       <h1 className="bg-zinc-900 w-max text-white text-base px-4 py-1 rounded-md my-4">New Release</h1>
       {loading ? (
         <div className="flex justify-center">
-          <div className="animate-spin rounded-full h-32 w-32 border-b-2 border-gray-900"></div>
+          <div className=" rounded-full h-32 w-32">
+            <Image src={loadingGif} width={150} height={150} alt="loading" className="h-full w-full rounded-full" />
+          </div>
         </div>
       ) : null}
       <div className="flex justify-center flex-wrap gap-2">
